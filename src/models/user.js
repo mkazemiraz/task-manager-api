@@ -13,25 +13,25 @@ const userSchema = mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true,
+        // unique: true,
         trim: true,
-        lowercase: true,
-        validate(value) {
-            if (!validator.default.isEmail(value)) {
-                throw new Error('email is invalid');
-            }
-        }
+        // lowercase: true,
+        // validate(value) {
+        //     if (!validator.default.isEmail(value)) {
+        //         throw new Error('email is invalid');
+        //     }
+        // }
     },
     password: {
         type: String,
         required: true,
         trim: true,
-        minlength: 7,
-        validate(value) {
-            if (value.toLowerCase().includes('password')) {
-                throw new Error('password cannot contain "password"');
-            }
-        }
+        // minlength: 7,
+        // validate(value) {
+        //     if (value.toLowerCase().includes('password')) {
+        //         throw new Error('password cannot contain "password"');
+        //     }
+        // }
     },
     age: {
         type: Number,
