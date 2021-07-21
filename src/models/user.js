@@ -15,11 +15,11 @@ const userSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    phone: {
-        type: String,
-        required: true,
-        trim: true
-    },
+    // phone: {
+    //     type: String,
+    //     required: true,
+    //     trim: true
+    // },
     // email: {
     //     type: String,
     //     // required: true,
@@ -43,15 +43,15 @@ const userSchema = mongoose.Schema({
         //     }
         // }
     },
-    age: {
-        type: Number,
-        default: 0,
-        validate(value) {
-            if (value < 0) {
-                throw new Error('Age must be positive number');
-            }
-        }
-    },
+    // age: {
+    //     type: Number,
+    //     default: 0,
+    //     validate(value) {
+    //         if (value < 0) {
+    //             throw new Error('Age must be positive number');
+    //         }
+    //     }
+    // },
     tokens: [{
         token: {
             type: String,
