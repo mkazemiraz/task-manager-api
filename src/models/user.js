@@ -44,31 +44,31 @@ const userSchema = mongoose.Schema({
 });
 
 
-userSchema.virtual('tasks', {
-    ref: 'Task',
-    localField: '_id',
-    foreignField: 'owner'
-});
+// userSchema.virtual('tasks', {
+//     ref: 'Task',
+//     localField: '_id',
+//     foreignField: 'owner'
+// });
 
-userSchema.methods.toJSON = function() {
-    const user = this;
-    const userPublic = user.toObject();
+// userSchema.methods.toJSON = function() {
+//     const user = this;
+//     const userPublic = user.toObject();
 
-    delete userPublic.password;
-    delete userPublic.tokens;
-    delete userPublic.avatar;
+//     delete userPublic.password;
+//     delete userPublic.tokens;
+//     delete userPublic.avatar;
 
-    return userPublic;
-}
+//     return userPublic;
+// }
 
-userSchema.methods.generateAuthToken = async function() {
-    const user = this;
-    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, {expiresIn: '7 days'});
-    user.tokens = user.tokens.concat({token});
-    await user.save();
+// userSchema.methods.generateAuthToken = async function() {
+//     const user = this;
+//     const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, {expiresIn: '7 days'});
+//     user.tokens = user.tokens.concat({token});
+//     await user.save();
 
-    return token;
-}
+//     return token;
+// }
 
 // findByCredential
 // userSchema.statics.findByCredential = async (email, password) => {
@@ -88,22 +88,22 @@ userSchema.methods.generateAuthToken = async function() {
 // }
 
 // Hash password
-userSchema.pre('save', async function(next) {
-    const user = this;
-    if (user.isModified('password')){
-        user.password = await bcryptjs.hash(user.password, 8);
-    }
+// userSchema.pre('save', async function(next) {
+//     const user = this;
+//     if (user.isModified('password')){
+//         user.password = await bcryptjs.hash(user.password, 8);
+//     }
 
-    next();
-});
+//     next();
+// });
 
-userSchema.pre('remove', async function(next) {
-    const user = this;
+// userSchema.pre('remove', async function(next) {
+//     const user = this;
 
-    await Task.deleteMany({ owner: user._id });
+//     await Task.deleteMany({ owner: user._id });
 
-    next();
-});
+//     next();
+// });
 
 const User = mongoose.model('User', userSchema);
 
