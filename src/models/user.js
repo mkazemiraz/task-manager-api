@@ -10,48 +10,38 @@ const userSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    field: {
+    email: {
         type: String,
         required: true,
-        trim: true
+        unique: true,
+        trim: true,
+        lowercase: true,
+        validate(value) {
+            if (!validator.default.isEmail(value)) {
+                throw new Error('email is invalid');
+            }
+        }
     },
-    // phone: {
-    //     type: String,
-    //     required: true,
-    //     trim: true
-    // },
-    // email: {
-    //     type: String,
-    //     // required: true,
-    //     // unique: true,
-    //     trim: true,
-    //     // lowercase: true,
-    //     // validate(value) {
-    //     //     if (!validator.default.isEmail(value)) {
-    //     //         throw new Error('email is invalid');
-    //     //     }
-    //     // }
-    // },
     password: {
         type: String,
-        // required: true,
+        required: true,
         trim: true,
-        // minlength: 7,
-        // validate(value) {
-        //     if (value.toLowerCase().includes('password')) {
-        //         throw new Error('password cannot contain "password"');
-        //     }
-        // }
+        minlength: 7,
+        validate(value) {
+            if (value.toLowerCase().includes('password')) {
+                throw new Error('password cannot contain "password"');
+            }
+        }
     },
-    // age: {
-    //     type: Number,
-    //     default: 0,
-    //     validate(value) {
-    //         if (value < 0) {
-    //             throw new Error('Age must be positive number');
-    //         }
-    //     }
-    // },
+    age: {
+        type: Number,
+        default: 0,
+        validate(value) {
+            if (value < 0) {
+                throw new Error('Age must be positive number');
+            }
+        }
+    },
     tokens: [{
         token: {
             type: String,

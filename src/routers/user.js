@@ -89,7 +89,7 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 });
 
 // Create user
-router.post('/users', cors(),async (req, res) => {
+router.post('/users' ,async (req, res) => {
 
     const user = new User(req.body);
     // user.save().then(user => {
