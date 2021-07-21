@@ -10,48 +10,58 @@ const userSchema = mongoose.Schema({
         required: true,
         trim: true
     },
-    email: {
-        // type: String,
-        // required: true,
-        unique: false,
-        // trim: true,
-        // lowercase: true,
-        // validate(value) {
-        //     if (!validator.default.isEmail(value)) {
-        //         throw new Error('email is invalid');
-        //     }
-        // }
-    },
-    password: {
+    // email: {
+    //     // type: String,
+    //     // required: true,
+    //     unique: false,
+    //     // trim: true,
+    //     // lowercase: true,
+    //     // validate(value) {
+    //     //     if (!validator.default.isEmail(value)) {
+    //     //         throw new Error('email is invalid');
+    //     //     }
+    //     // }
+    // },
+    field: {
         type: String,
         required: true,
-        trim: true,
-        minlength: 7,
-        validate(value) {
-            if (value.toLowerCase().includes('password')) {
-                throw new Error('password cannot contain "password"');
-            }
-        }
+        trim: true
     },
-    age: {
-        type: Number,
-        default: 0,
-        validate(value) {
-            if (value < 0) {
-                throw new Error('Age must be positive number');
-            }
-        }
+    phone: {
+        type: String,
+        required: true,
+        trim: true
     },
-    tokens: [{
-        token: {
-            type: String,
-            required: true
-        }
-    }], 
-    avatar: {
-        type: Buffer
-    }
-}, {
+    // password: {
+    //     type: String,
+    //     required: true,
+    //     trim: true,
+    //     minlength: 7,
+    //     validate(value) {
+    //         if (value.toLowerCase().includes('password')) {
+    //             throw new Error('password cannot contain "password"');
+    //         }
+    //     }
+    // },
+//     age: {
+//         type: Number,
+//         default: 0,
+//         validate(value) {
+//             if (value < 0) {
+//                 throw new Error('Age must be positive number');
+//             }
+//         }
+//     },
+//     tokens: [{
+//         token: {
+//             type: String,
+//             required: true
+//         }
+//     }], 
+//     avatar: {
+//         type: Buffer
+//     }
+// }, {
     timestamps: true
 });
 
