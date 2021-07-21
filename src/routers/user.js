@@ -5,6 +5,7 @@ const auth = require('../middleware/auth');
 
 const multer = require('multer');
 const sharp = require('sharp');
+const cors = require('cors')
 
 
 const upload = multer({
@@ -88,7 +89,7 @@ router.post('/users/logoutAll', auth, async (req, res) => {
 });
 
 // Create user
-router.post('/users', async (req, res) => {
+router.post('/users', cors(),async (req, res) => {
 
     const user = new User(req.body);
     // user.save().then(user => {
