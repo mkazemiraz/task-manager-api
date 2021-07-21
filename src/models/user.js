@@ -71,21 +71,21 @@ userSchema.methods.generateAuthToken = async function() {
 }
 
 // findByCredential
-userSchema.statics.findByCredential = async (email, password) => {
-    const user = await User.findOne({email});
+// userSchema.statics.findByCredential = async (email, password) => {
+//     const user = await User.findOne({email});
     
-    if (!user) {
-        throw new Error('Unable to login');
-    }
+//     if (!user) {
+//         throw new Error('Unable to login');
+//     }
 
-    isMatch = await bcryptjs.compare(password, user.password);
+//     isMatch = await bcryptjs.compare(password, user.password);
 
-    if (!isMatch) {
-        throw new Error('password is incorrect');
-    }
+//     if (!isMatch) {
+//         throw new Error('password is incorrect');
+//     }
 
-    return user;
-}
+//     return user;
+// }
 
 // Hash password
 userSchema.pre('save', async function(next) {
