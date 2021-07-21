@@ -10,6 +10,13 @@ const taskRouter = require('./routers/task');
 const app = express();
 const port = process.env.PORT;
 
+app.use(function (req, res, next) {
+
+    // Website you wish to allow to connect
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    next();
+});
+
 app.use(express.json());
 app.use(userRouter);
 app.use(taskRouter);
